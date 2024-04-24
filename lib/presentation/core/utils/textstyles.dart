@@ -3,17 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class MyTextStyles {
-  static TextStyle headingStyle = GoogleFonts.getFont(
-    'Open Sans',
-    fontSize: 28,
-    fontWeight: FontWeight.w600,
-    color: lightwhite,
-  );
+  static TextStyle headingStyle = GoogleFonts.getFont('Open Sans',
+      fontSize: 28, fontWeight: FontWeight.w600, color: lightwhite);
   static TextStyle breakNews = GoogleFonts.getFont(
     'Open Sans',
     fontSize: 28,
     fontWeight: FontWeight.w600,
-    color: black,
+    // color: black,
   );
   static TextStyle headinglightStyle = GoogleFonts.getFont(
     'Roboto',

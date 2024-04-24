@@ -1,7 +1,10 @@
+import 'package:blocmini/presentation/screens/news/newsbloc/newsbloc_bloc.dart';
+import 'package:blocmini/presentation/screens/news/newsbloc/newsbloc_event.dart';
 import 'package:flutter/material.dart';
 import 'package:blocmini/presentation/core/services/theme_services.dart';
 import 'package:blocmini/presentation/core/utils/colors.dart';
 import 'package:blocmini/presentation/core/utils/textstyles.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -20,6 +23,15 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           title: const TitleContainer(),
           elevation: 0,
           actions: [
+            IconButton(
+                onPressed: () {
+                  BlocProvider.of<NewsBloc>(context).add(NewsRequestedEvent());
+                },
+                icon: const Icon(
+                  Icons.refresh,
+                  color: Colors.green,
+                  size: 30,
+                )),
             IconButton(
               icon: Icon(
                 themeProvider.getThemeIcon(),

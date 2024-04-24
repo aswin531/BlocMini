@@ -1,37 +1,41 @@
 import 'package:blocmini/domain/entities/article_entity.dart';
 
 class ArticleModel extends ArticleEntity {
+  final String? sourceId;
+  final String? sourceName;
+
   const ArticleModel({
-    int? id,
+    String? id,
     String? author,
     String? title,
     String? description,
     String? url,
     String? urlToImage,
-    String? PublishedAt,
+    String? publishedAt,
     String? content,
-  });
+    this.sourceId,
+    this.sourceName,
+  }) : super(
+          author: author,
+          title: title,
+          description: description,
+          url: url,
+          urlToImage: urlToImage,
+          publishedAt: publishedAt,
+          content: content,
+        );
 
   factory ArticleModel.fromJson(Map<String, dynamic> json) {
     return ArticleModel(
-      id: json['id'],
       author: json['author'],
       title: json['title'],
       description: json['description'],
       url: json['url'],
       urlToImage: json['urlToImage'],
-      PublishedAt: json['PublishedAt'],
+      publishedAt: json['publishedAt'],
       content: json['content'],
+      sourceId: json['source'] != null ? json['source']['id'] : null,
+      sourceName: json['source'] != null ? json['source']['name'] : null,
     );
   }
 }
-
-// : super(
-//             id: id,
-//             author: author,
-//             title: title,
-//             description: description,
-//             url: url,
-//             urlToImage: urlToImage,
-//             PublishedAt: PublishedAt,
-//             content: content);
