@@ -1,3 +1,4 @@
+import 'package:blocmini/presentation/screens/news/news_detailpage.dart';
 import 'package:blocmini/presentation/screens/news/newsbloc/newsbloc_bloc.dart';
 import 'package:blocmini/presentation/screens/news/newsbloc/newsbloc_event.dart';
 import 'package:flutter/material.dart';
@@ -31,6 +32,16 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                   Icons.refresh,
                   color: Colors.green,
                   size: 30,
+                )),
+            TextButton(
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) =>const NewsDetailPage(),
+                  ));
+                },
+                child: const Text(
+                  "Post",
+                  style: TextStyle(color: Colors.green, fontSize: 25),
                 )),
             IconButton(
               icon: Icon(

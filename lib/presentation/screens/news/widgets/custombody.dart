@@ -10,52 +10,48 @@ class CustomBodyHome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => NewsDetailPage(
-              // newsId: newsId,
-              newsBloc:
-                  BlocProvider.of<NewsBloc>(context), // Pass the Bloc instance
-            ),
+    return Container(
+      padding: const EdgeInsets.all(20),
+      width: double.infinity,
+      height: double.infinity,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            "Breaking News",
+            style: MyTextStyles.breakNews,
           ),
-        );
-      },
-      child: Container(
-        padding: const EdgeInsets.all(20),
-        width: double.infinity,
-        height: double.infinity,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              "Breaking News",
-              style: MyTextStyles.breakNews,
-            ),
-            Expanded(child: BlocBuilder<NewsBloc, NewsState>(
-              builder: (context, state) {
-                // print(state.props);
-                if (state is NewsInitialState) {
-                  return const Text("");
-                } else if (state is NewsLoadingState) {
-                  return const Center(
-                    child: CircularProgressIndicator(
-                      color: Colors.black,
-                    ),
-                  );
-                } else if (state is NewsLoadedState) {
-                  return ListView.separated(
-                    separatorBuilder: (context, index) => Divider(
-                      thickness: 1,
-                      color: Colors.black
-                          .withOpacity(BorderSide.strokeAlignCenter),
-                    ),
-                    scrollDirection: Axis.vertical,
-                    itemCount: state.news.length,
-                    itemBuilder: (context, index) {
-                      return Container(
+          Expanded(child: BlocBuilder<NewsBloc, NewsState>(
+            builder: (context, state) {
+              // print(state.props);
+              if (state is NewsInitialState) {
+                return const Text("");
+              } else if (state is NewsLoadingState) {
+                return const Center(
+                  child: CircularProgressIndicator(
+                    color: Colors.black,
+                  ),
+                );
+              } else if (state is NewsLoadedState) {
+                return ListView.separated(
+                  separatorBuilder: (context, index) => Divider(
+                    thickness: 1,
+                    color:
+                        Colors.black.withOpacity(BorderSide.strokeAlignCenter),
+                  ),
+                  scrollDirection: Axis.vertical,
+                  itemCount: state.news.length,
+                  itemBuilder: (context, index) {
+                    return GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => NewsDetailPage(),
+                          ),
+                        );
+                      },
+                      child: Container(
                         margin: const EdgeInsets.symmetric(horizontal: 10.0),
                         width: 300,
                         child: Padding(
@@ -98,22 +94,22 @@ class CustomBodyHome extends StatelessWidget {
                             ],
                           ),
                         ),
-                      );
-                    },
-                  );
-                } else if (state is NewsErrorState) {
-                  return Center(
-                    child: Text(state.message),
-                  );
-                }
-                return const Text(
-                  "Some Error Occured",
-                  style: TextStyle(color: Colors.red),
+                      ),
+                    );
+                  },
                 );
-              },
-            ))
-          ],
-        ),
+              } else if (state is NewsErrorState) {
+                return Center(
+                  child: Text(state.message),
+                );
+              }
+              return const Text(
+                "Some Error Occured",
+                style: TextStyle(color: Colors.red),
+              );
+            },
+          ))
+        ],
       ),
     );
   }
