@@ -33,7 +33,7 @@ class AppTheme {
       fontWeight: FontWeight.bold,
       fontSize: 16);
 
-  static final TextTheme _lightTextTheme = TextTheme(
+  static final TextTheme _lightTextTheme =  TextTheme(
     displayLarge: _lightHeadingText,
     bodyLarge: _lightBodyText,
   );
